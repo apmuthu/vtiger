@@ -1654,7 +1654,7 @@ function getTodoList(& $calendar,$start_date,$end_date,$info='')
         }
 	
 	$group_cond = '';
-	$group_cond .= " ORDER BY vtiger_activity.date_start,vtiger_activity.time_start ASC";
+   	$group_cond .= " ORDER BY vtiger_activity.date_start,vtiger_activity.time_start ASC";
 	if(isset($_REQUEST['start']) && $_REQUEST['start'] != '')
 		$start = vtlib_purify($_REQUEST['start']);
 	else 
@@ -1662,8 +1662,8 @@ function getTodoList(& $calendar,$start_date,$end_date,$info='')
 
 //T6477 changes
 	if(PerformancePrefs::getBoolean('LISTVIEW_COMPUTE_PAGE_COUNT', false) === true){
-		$count_res = $adb->pquery(mkCountQuery($query), $params);
-   		$total_rec_count = $adb->query_result($count_res,0,'count');
+	    $count_res = $adb->pquery(mkCountQuery($query), $params);
+		  $total_rec_count = $adb->query_result($count_res,0,'count');
 	}else{
 		$total_rec_count = null;
 	}
@@ -2096,7 +2096,6 @@ function constructTodoListView($todo_list,$cal,$subtab,$navigation_array='')
                         ";
 	$header_rows = count($header);
 	$navigationOutput = getTableHeaderSimpleNavigation($navigation_array, $url_string,"Calendar","index");
-
 
 	if($navigationOutput != '')
 	{
