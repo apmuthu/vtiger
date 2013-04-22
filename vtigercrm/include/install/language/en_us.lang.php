@@ -51,6 +51,7 @@ $installationStrings = array(
 	'LBL_CONFIRM_CONFIG_SETTINGS' => 'Confirm Configuration Settings',
 	'LBL_CONFIG_FILE_CREATION' => 'Config File Creation',
 	'LBL_OPTIONAL_MODULES' => 'Optional Modules',
+	'LBL_REFRESH' => 'Refresh',
 	'LBL_SELECT_OPTIONAL_MODULES_TO_install' => 'Select Optional Modules to Install',
 	'LBL_SELECT_OPTIONAL_MODULES_TO_update' => 'Select Optional Modules to Update',
 	'LBL_SELECT_OPTIONAL_MODULES_TO_copy' => 'Select Optional Modules to Copy',
