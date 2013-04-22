@@ -1243,7 +1243,7 @@ class Common_Install_Wizard_Utils {
 					$moduleDetails['selected'] = true;
 					$moduleDetails['enabled'] = true;
 					$migrationAction = 'install';
-					if(count($bundleOptionalModule['update']) > 0 ) {
+					if(isset($bundleOptionalModule['update']) && count($bundleOptionalModule['update']) > 0 ) {
 						$moduleDetails['enabled'] = false;
 						$migrationAction = 'update';
 					}
@@ -1257,25 +1257,27 @@ class Common_Install_Wizard_Utils {
 				}
 		    }
 		}
-		if(is_array($optionalModules['install']['language']) &&
-				is_array($optionalModules['install']['module'])) {
+		if( isset($optionalModules['install']['language']) && is_array($optionalModules['install']['language']) &&
+				isset($optionalModules['install']['module']) && is_array($optionalModules['install']['module']) ) {
 			$optionalModules['install'] = array_merge($optionalModules['install']['module'],
 				$optionalModules['install']['language']);
-		} elseif(is_array($optionalModules['install']['language']) &&
-				!is_array($optionalModules['install']['module'])) {
+		} elseif( isset($optionalModules['install']['language']) && is_array($optionalModules['install']['language']) ) {
 			$optionalModules['install'] = $optionalModules['install']['language'];
-		} else {
+		} elseif( isset($optionalModules['install']['module']) && is_array($optionalModules['install']['module']) ) {
 			$optionalModules['install'] = $optionalModules['install']['module'];
+		} else {
+			// nothing to do
 		}
-		if( is_array($optionalModules['update']['language']) &&
-				is_array($optionalModules['update']['module'])) {
+		if( isset($optionalModules['update']['language']) && is_array($optionalModules['update']['language']) &&
+				isset($optionalModules['update']['module']) && is_array($optionalModules['update']['module']) ) {
 			$optionalModules['update'] = array_merge($optionalModules['update']['module'],
 				$optionalModules['update']['language']);
-		} elseif(is_array($optionalModules['update']['language']) &&
-				!is_array($optionalModules['update']['module'])) {
+		} elseif( isset($optionalModules['update']['language']) && is_array($optionalModules['update']['language']) ) {
 			$optionalModules['update'] = $optionalModules['update']['language'];
-		} else {
+		} elseif( isset($optionalModules['update']['module']) && is_array($optionalModules['update']['module']) ) {
 			$optionalModules['update'] = $optionalModules['update']['module'];
+		} else {
+			// nothing to do
 		}
 		return $optionalModules;
 	}
@@ -1300,7 +1302,7 @@ class Common_Install_Wizard_Utils {
 		$moduleName = $package->getModuleName();
 		if($moduleName != null) {
 			$moduleDetails = array();
-			$moduleDetails['description'] = $optionalModuleStrings[$moduleName.'_description'];
+			$moduleDetails['description'] = isset($optionalModuleStrings[$moduleName.'_description']) ? $optionalModuleStrings[$moduleName.'_description'] : '';
 
 			if(Vtiger_Version::check($moduleForVtigerVersion,'>=') && Vtiger_Version::check($moduleMaxVtigerVersion,'<')) {
 				$moduleDetails['selected'] = true;
