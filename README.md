@@ -19,5 +19,5 @@ Caveats
 
 <ul>
 <li>I will be able to update this repo only when I get time.</li>
-<li>Support provided by [PlaNetTel](http://www.planettel.com.sg), Singapore</li>
+<li>Support provided by <a href="http://www.planettel.com.sg">PlaNetTel</a>, Singapore</li>
 </ul>
