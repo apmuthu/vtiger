@@ -78,7 +78,10 @@ if(isset($app_strings['LBL_CHARSET'])) {
 }
 
 $smarty->assign("IMAGE_PATH", $image_path);
-$smarty->assign("PRINT_URL", "phprint.php?jt=".session_id().$GLOBALS['request_string']);
+if (isset($GLOBALS['request_string']))
+	$smarty->assign("PRINT_URL", "phprint.php?jt=".session_id().$GLOBALS['request_string']);
+else
+	$smarty->assign("PRINT_URL", "phprint.php?jt=".session_id());
 $smarty->assign("VTIGER_VERSION", $vtiger_current_version);
 
 
