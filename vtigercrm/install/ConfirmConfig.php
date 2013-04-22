@@ -31,11 +31,6 @@ if (isset($_REQUEST['root_password'])) $_SESSION['installation_info']['root_pass
 if (isset($_REQUEST['admin_email'])) $_SESSION['installation_info']['admin_email']= $admin_email = $_REQUEST['admin_email'];
 if (isset($_REQUEST['admin_password'])) $_SESSION['installation_info']['admin_password'] = $admin_password = $_REQUEST['admin_password'];
 
-if (isset($_REQUEST['create_utf8_db'])) 
-	$_SESSION['installation_info']['create_utf8_db'] = $create_utf8_db = 'true';
-else 
-	$_SESSION['installation_info']['create_utf8_db'] = $create_utf8_db = 'false';
-
 if (isset($_REQUEST['db_populate'])) 
 	$_SESSION['installation_info']['db_populate'] = $db_populate = 'true';
 else
@@ -48,6 +43,11 @@ if(isset($currency_name)){
 
 $create_db = false;
 if(isset($_REQUEST['check_createdb']) && $_REQUEST['check_createdb'] == 'on') $create_db = true;
+
+if (isset($_REQUEST['create_utf8_db']) && $create_db) 
+	$_SESSION['installation_info']['create_utf8_db'] = $create_utf8_db = 'true';
+else 
+	$_SESSION['installation_info']['create_utf8_db'] = $create_utf8_db = 'false';
 
 $dbCheckResult = Installation_Utils::checkDbConnection($db_type, $db_hostname, $db_username, $db_password, $db_name, $create_db, $create_utf8_db, $root_user, $root_password);
 $next = $dbCheckResult['flag'];

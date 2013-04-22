@@ -101,6 +101,7 @@ class Installation_Utils {
 
 		$error_msg = '';
 		$error_msg_info = '';
+		$dbCheckResult['flag'] = false;
 
 		if(!$db_type_status || !$db_server_status) {
 			$error_msg = $installationStrings['ERR_DATABASE_CONNECTION_FAILED'].'. '.$installationStrings['ERR_INVALID_MYSQL_PARAMETERS'];
@@ -120,9 +121,7 @@ class Installation_Utils {
 		}
 		else {
 			$dbCheckResult['flag'] = true;
-			return $dbCheckResult;
 		}
-		$dbCheckResult['flag'] = false;
 		$dbCheckResult['error_msg'] = $error_msg;
 		$dbCheckResult['error_msg_info'] = $error_msg_info;
 		return $dbCheckResult;
