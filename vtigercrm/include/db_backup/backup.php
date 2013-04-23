@@ -12,10 +12,10 @@
 
 require_once("config.php");
 require_once("include/database/PearDatabase.php");
-define("dbserver", isset($dbconfig['db_hostname']) ? $dbconfig['db_hostname'] : '';
-define("dbuser",   isset($dbconfig['db_username']) ? $dbconfig['db_username'] : '';
-define("dbpass",   isset($dbconfig['db_password']) ? $dbconfig['db_password'] : '';
-define("dbname",   isset($dbconfig['db_name'])     ? $dbconfig['db_name']     : '';
+define("dbserver", isset($dbconfig['db_hostname']) ? $dbconfig['db_hostname'] : '');
+define("dbuser",   isset($dbconfig['db_username']) ? $dbconfig['db_username'] : '');
+define("dbpass",   isset($dbconfig['db_password']) ? $dbconfig['db_password'] : '');
+define("dbname",   isset($dbconfig['db_name'])     ? $dbconfig['db_name']     : '');
 
 function save_structure($filename, $root_directory) {
 		global $log;
