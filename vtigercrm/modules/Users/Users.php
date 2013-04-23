@@ -126,6 +126,7 @@ class Users extends CRMEntity {
     var $default_sort_order = 'ASC';
 
     var $record_id;
+    var $record_module;
     var $new_schema = true;
 
     var $DEFAULT_PASSWORD_CRYPT_TYPE; //'BLOWFISH', /* before PHP5.3*/ MD5;

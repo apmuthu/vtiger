@@ -763,7 +763,7 @@ function isPermitted($module,$actionname,$record_id='')
 	}
 
 	//Checking the Access for the Settings Module
-	if($module == 'Settings' || $module == 'Administration' || $module == 'System' || $_REQUEST['parenttab'] == 'Settings')
+	if( in_array($module, array( 'Settings', 'Administration', 'System')) || (isset($_REQUEST['parenttab']) && $_REQUEST['parenttab'] == 'Settings') )
 	{
 		if(! $is_admin)
 		{

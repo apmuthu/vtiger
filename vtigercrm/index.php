@@ -438,7 +438,7 @@ if(isset($action) && isset($module))
  	         header( "Pragma: no-cache" );        
  	}
 
-        if(($module == 'Users' || $module == 'Home' || $module == 'uploads') && $_REQUEST['parenttab'] != 'Settings')
+        if(in_array($module, array( 'Users', 'Home', 'uploads')) && (!isset($_REQUEST['parenttab']) || $_REQUEST['parenttab'] != 'Settings'))
         {
           $skipSecurityCheck=true;
         }
@@ -676,7 +676,7 @@ if(!$skipSecurityCheck && $use_current_login)
 
 	require_once('include/utils/UserInfoUtil.php');
 	if(preg_match('/Ajax/',$action)) {
-		if($_REQUEST['ajxaction'] == 'LOADRELATEDLIST'){
+		if(isset($_REQUEST['ajxaction']) && $_REQUEST['ajxaction'] == 'LOADRELATEDLIST'){
 			$now_action = 'DetailView';
 		} else {
 			$now_action=vtlib_purify($_REQUEST['file']);
@@ -845,7 +845,7 @@ if((!$viewAttachment) && (!$viewAttachment && $action != 'home_rss') && $action 
 	{
 	?>
 		<script type="text/javascript">
-			var userDateFormat = "<?php echo $current_user->date_format ?>";
+			var userDateFormat = "<?php echo isset($current_user->date_format) ? $current_user->date_format : ' ' ?>";
 			var default_charset = "<?php echo $default_charset; ?>";
 			var userCurrencySeparator = "<?php if(isset($current_user->currency_grouping_separator)
 													&& $current_user->currency_grouping_separator == '') {
