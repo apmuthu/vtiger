@@ -5,6 +5,7 @@ vtiger
 <li><a href="http://www.vtiger.com">vTigerCRM Home</a></li>
 <li><a href="http://www.sf.net/projects/vtigercrm/files">Downloads</a></li>
 <li><a href="http://trac.vtiger.com/cgi-bin/trac.cgi/browser">Trac Repo</a></li>
+<li><a href="https://discussions.vtiger.com/index.php?p=/categories/vtiger-crm-5-4-0">Forum</a></li>
 <li><a href="https://wiki.vtiger.com">Wiki</a></li>
 </ul>
 
