@@ -138,6 +138,7 @@ function getTopQuotes($maxval,$calCnt)
 	//Retreive the List View Table Header
 	$controller = new ListViewController($adb, $current_user, $queryGenerator);
 	$controller->setHeaderSorting(false);
+	$order_by = isset($_REQUEST['order_by']) ? $_REQUEST['order_by'] : '';
 	$header = $controller->getListViewHeader($focus,$currentModule,$url_string,$sorder,
 			$order_by, true);
 

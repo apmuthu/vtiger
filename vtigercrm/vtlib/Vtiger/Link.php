@@ -114,9 +114,9 @@ class Vtiger_Link {
 			$params = Array($uniqueid, $tabid, $type, $label, $url, $iconpath, $sequence);
 			if(!empty($handlerInfo)) {
 				$sql .= (', handler_path, handler_class, handler');
-				$params[] = $handlerInfo['path'];
-				$params[] = $handlerInfo['class'];
-				$params[] = $handlerInfo['method'];
+				$params[] = isset($handlerInfo['path'])   ? $handlerInfo['path']   : '';
+				$params[] = isset($handlerInfo['class'])  ? $handlerInfo['class']  : '';
+				$params[] = isset($handlerInfo['method']) ? $handlerInfo['method'] : '';
 			}
 			$sql .= (') VALUES ('.generateQuestionMarks($params).')');
 			$adb->pquery($sql, $params);

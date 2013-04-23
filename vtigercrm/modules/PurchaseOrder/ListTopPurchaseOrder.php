@@ -137,6 +137,7 @@ function getTopPurchaseOrder($maxval,$calCnt)
 	$title=array('myTopPurchaseOrders.gif',$current_module_strings['LBL_MY_TOP_PO'],'home_mytoppo');
 	$controller = new ListViewController($adb, $current_user, $queryGenerator);
 	$controller->setHeaderSorting(false);
+	$order_by = isset($_REQUEST['order_by']) ? $_REQUEST['order_by'] : '';
 	$header = $controller->getListViewHeader($focus,$currentModule,$url_string,$sorder,
 			$order_by, true);
 

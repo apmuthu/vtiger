@@ -375,7 +375,7 @@ function getTabid($module) {
 
 		if (file_exists('tabdata.php') && (filesize('tabdata.php') != 0)) {
 			include('tabdata.php');
-			$tabid = $tab_info_array[$module];
+			$tabid = isset($tab_info_array[$module]) ? $tab_info_array[$module] : '';
 
 			// Update information to cache for re-use
 			VTCacheUtils::updateTabidInfo($tabid, $module);
@@ -2523,7 +2523,7 @@ function SaveTagCloudView($id = "") {
 	global $log;
 	global $adb;
 	$log->debug("Entering in function SaveTagCloudView($id)");
-	$tag_cloud_status = $_REQUEST['tagcloudview'];
+	$tag_cloud_status = isset($_REQUEST['tagcloudview']) ? $_REQUEST['tagcloudview'] : false;
 
 	if ($tag_cloud_status == "true") {
 		$tag_cloud_view = 0;
