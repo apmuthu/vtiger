@@ -1018,8 +1018,10 @@ function to_html($string, $encode=true)
 	$ajax_action = '';
 	if(!( (isset($_REQUEST['module']) && in_array($_REQUEST['module'], array( 'Settings', 'Portal', 'Reports'))) || 
 		  (isset($_REQUEST['file']) && $_REQUEST['file'] == 'ListView') )) // && $_REQUEST['module'] != 'Emails')
-		$ajax_action = $_REQUEST['module'].'Ajax';
-		
+	{
+		if(isset($_REQUEST['module']))
+			$ajax_action = $_REQUEST['module'].'Ajax';
+	}	
 
 	if(is_string($string))
 	{
