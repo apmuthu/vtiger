@@ -65,7 +65,7 @@ class Users extends CRMEntity {
     // This is the list of fields that are in the lists.
     var $list_link_field= 'last_name';
 
-    var $list_mode;
+    var $mode;
     var $popup_type;
 
     var $search_fields = Array(
@@ -142,7 +142,7 @@ class Users extends CRMEntity {
         $this->DEFAULT_PASSWORD_CRYPT_TYPE = (version_compare(PHP_VERSION, '5.3.0') >= 0)?
                 'PHP5.3MD5': 'MD5';
         $this->column_fields = getColumnFields('Users');
-        $this->column_fields['ccurrency_name'] = '';
+        $this->column_fields['currency_name'] = '';
         $this->column_fields['currency_code'] = '';
         $this->column_fields['currency_symbol'] = '';
         $this->column_fields['conv_rate'] = '';
@@ -833,7 +833,7 @@ class Users extends CRMEntity {
                         $fldvalue = $themeList[0];
                     }
                 }
-                if($current_user->id == $this->id) {
+                if(isset($current_user->id) && $current_user->id == $this->id) {
                     $_SESSION['vtiger_authenticated_user_theme'] = $fldvalue;
                 }
             } elseif($uitype == 32) {
@@ -847,7 +847,7 @@ class Users extends CRMEntity {
                         $fldvalue = $languageList[0];
                     }
                 }
-                if($current_user->id == $this->id) {
+                if(isset($current_user->id) && $current_user->id == $this->id) {
                     $_SESSION['authenticated_user_language'] = $fldvalue;
                 }
             }
@@ -1127,7 +1127,7 @@ class Users extends CRMEntity {
     function getDefaultHomeModuleVisibility($home_string,$inVal) {
         $homeModComptVisibility=0;
         if($inVal == 'postinstall') {
-            if($_REQUEST[$home_string] != '') {
+            if(isset($_REQUEST[$home_string]) && $_REQUEST[$home_string] != '') {
                 $homeModComptVisibility=0;
             }
         }

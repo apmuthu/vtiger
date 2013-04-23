@@ -67,8 +67,8 @@ class Vtiger_Block {
 	 * @access private
 	 */
 	function initialize($valuemap, $moduleInstance=false) {
-		$this->id = $valuemap[blockid];
-		$this->label= $valuemap[blocklabel];
+		$this->id = $valuemap['blockid'];
+		$this->label= $valuemap['blocklabel'];
 		$this->module=$moduleInstance? $moduleInstance: Vtiger_Module::getInstance($valuemap[tabid]);
 	}
 

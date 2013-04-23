@@ -151,7 +151,7 @@ session_destroy();
 </table>
 <table border=0 cellspacing=0 cellpadding=0 width=80% align=center>
 	<tr>
-		<td class=small align=center> <a href="http://www.vtiger.com" target="_blank">www.vtiger.com</a></td> | <?php echo $statimage ?>
+		<td class=small align=center> <a href="http://www.vtiger.com" target="_blank">www.vtiger.com</a></td>
 	</tr>
 </table>
 </body>
