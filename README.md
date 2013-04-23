@@ -4,7 +4,7 @@ vtiger
 <ul>
 <li><a href="http://www.vtiger.com">vTigerCRM Home</a></li>
 <li><a href="http://www.sf.net/projects/vtigercrm/files">Downloads</a></li>
-<li><a href="http://trac.vtiger.com/cgi-bin/trac.cgi/browser/vtigercrm/trunkBrowse">Trac Repo</a></li>
+<li><a href="http://trac.vtiger.com/cgi-bin/trac.cgi/browser">Trac Repo</a></li>
 <li><a href="https://wiki.vtiger.com">Wiki</a></li>
 </ul>
 
