@@ -547,7 +547,7 @@ class Migration_Utils {
 
 	public static function resetUserPasswords($con) {
 		$sql = 'select * from vtiger_users';
-		$result = $con->_Execute($sql, false);
+		$result = $con->Execute($sql, false);
 		$rowList = $result->GetRows();
 		foreach ($rowList as $row) {
 			if(!isset($row['crypt_type'])) {
