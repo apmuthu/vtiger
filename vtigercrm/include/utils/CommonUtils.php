@@ -1392,7 +1392,7 @@ function getProductImages($id) {
  * It acceps the File lists,modulename,id and the mode as arguments
  * It returns the array details of the upload
  */
-function SaveImage($_FILES, $module, $id, $mode) {
+function SaveImage($afiles, $module, $id, $mode) {
 	global $log, $root_directory;
 	$log->debug("Entering SaveImage(" . $_FILES . "," . $module . "," . $id . "," . $mode . ") method ...");
 	global $adb;
