@@ -15,6 +15,10 @@ This Fork
 Since the vTiger dev team only provides versioned releases for community usage, 
 this repo has been created to provide for easy community forked development on GitHub.
 
+Addons
+======
+popup_clid.php - vTigerCRM 5.2.1 / Asterisk 11.3.3 (Elastix 2.5) pops up Contacts page of callerid of incoming call on pickup
+
 Caveats
 =======
 
