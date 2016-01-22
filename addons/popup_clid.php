@@ -2,17 +2,21 @@
 /*
 // Program       : Pop-Up Display of vTigerCRM Contact page triggered by Asterisk on Call Pickup
 // Author        : Ap.Muthu <apmuthu@usa.net>
-// Version       : 1.0
+// Version       : 1.2
 // Release Date  : 2016-01-19
-// Example Usage : http://DOMAIN.TLD/PATH.TO.VTIGERCRM.v5.2.1/popup_clid.php?extn=1000
+// Last Updated  : 2016-01-22
+// Example Usage : http://DOMAIN.TLD/PATH.TO.VTIGERCRM/popup_clid.php?extn=1000
 // URL GET var   : extn
 */
 
-$refresh_secs = 10;
+define("REFRESH_SECS", 10);
+define("SHOW_LINKS", true);
+define("RCV_TAG", 'Local'); // Receiving IP Phone prefix => SIP, Local
+define("INC_TAG", 'DAHDI'); // Incoming line PSTN, Voice Gateway prefix => DAHDI
 
 $content = '<html>
     <head>
-	<meta http-equiv="refresh" content="'.$refresh_secs.'">
+	<meta http-equiv="refresh" content="' . REFRESH_SECS . '">
     </head>
     <body>
 ';
@@ -30,19 +34,28 @@ if (strlen($callerid) == 0) die($content . $endpage);
 
 $content .= "<p>Caller ID: <b>$callerid</b></p>";
 
+require_once('vtigerversion.php');
 require_once('config.inc.php');
 require_once('include/utils/utils.php');
+
+// true if vTigerCRM version is 6.x and false if 5.x - tested on versions 6.3 and 5.2.1
+$vtiger6 = (substr($vtiger_current_version, 0, 1) == '6');
 
 $contactid = getContactId($callerid);
 $count = count($contactid);
 $contactid1 =  ($count == 1) ? $contactid[0]['contactid'] : false;
 
-if ($count == 0) {
-	$content .= '<p><a href="index.php?module=Contacts&action=EditView&return_action=DetailView" target="blank">New Caller</a></p>';
-} elseif ($count == 1) {
-	$content .= '<a href="' . popup_link($contactid1) . '" target="blank">Contact ID is ' . $contactid1 . '</p>';
-} else {
-	$content .= '<p>' . list_contacts($contactid) . '</p>';
+if (SHOW_LINKS) {
+    if ($count == 0) {
+      if (!$vtiger6)
+        $content .= '<p><a href="index.php?module=Contacts&action=EditView&return_action=DetailView" target="blank">New Caller</a></p>';
+      else
+        $content .= '<p><a href="index.php?module=Contacts&view=Edit" target="blank">New Caller</a></p>';
+    } elseif ($count == 1) {
+        $content .= '<a href="' . popup_link($contactid1) . '" target="blank">Contact ID is ' . $contactid1 . '</p>';
+    } else {
+        $content .= '<p>' . list_contacts($contactid) . '</p>';
+    }
 }
 
 echo $content . $endpage;
@@ -53,16 +66,20 @@ echo $content . $endpage;
 // =========
 
 function get_callerid($extn, $delim="!") {
-	// Tested on Asterisk 11.3.3 - Elastix 2.5
-	$cmd = 'asterisk -rx"core show channels concise" | grep ^DAHDI | grep "Local/' . $extn . '"';
+	$cmd = 'asterisk -rx"core show channels concise" | grep ^' . INC_TAG . ' | grep "' . RCV_TAG . '/' . $extn . '"';
 	$a = shell_exec($cmd);
 	$b = explode($delim, $a);
 	return $b[7];
 }
 
 function popup_link($contactid) {
-	if ($contactid > 0)
-		return 'index.php?module=Contacts&action=DetailView&record='.$contactid;
+    global $vtiger6;
+	if ($contactid > 0) {
+	  if (!$vtiger6)
+		return 'index.php?module=Contacts&action=DetailView&record=' . $contactid;
+      else
+        return 'index.php?module=Contacts&view=Detail&record=' . $contactid . '&mode=showDetailViewByMode&requestMode=full';
+    }
 }
 
 function getContactId($callerid) {
